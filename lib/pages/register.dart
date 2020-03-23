@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +17,10 @@ FirebaseUser user;
 FirebaseAuth _auth=FirebaseAuth.instance;
 class _SellerRegisterState extends State<SellerRegister> {
   bool _isSeller=true;
+  String path;
+  String url,url1;
+  //File file=new File(path);
+  File file,file1;
 
   String _emailid;
   String _password;
@@ -359,7 +366,8 @@ class _SellerRegisterState extends State<SellerRegister> {
                             itemBuilder: (BuildContext context, int index) {
                               final bool isMultiPath = _paths != null && _paths.isNotEmpty;
                               final String name = 'File: ' + (isMultiPath ? _paths.keys.toList()[index] : _fileName ?? '...');
-                              final path = isMultiPath ? _paths.values.toList()[index].toString() : _path;
+                               path = isMultiPath ? _paths.values.toList()[index].toString() : _path;
+                              file1=new File(path);
 
                               return new ListTile(
                                 title: new Text(
@@ -372,6 +380,19 @@ class _SellerRegisterState extends State<SellerRegister> {
                           ),
                     )
                         : new Container(),
+                  ),
+                  new Padding(
+                    padding: const EdgeInsets.only(top: 10.0, bottom: 20.0),
+                    child: new RaisedButton(
+                      onPressed: () async{
+                        final StorageReference firebaseStorageRef=FirebaseStorage.instance.ref().child('GST_certificate');
+                        final StorageUploadTask task=firebaseStorageRef.putFile(file1);
+                        StorageTaskSnapshot s=await task.onComplete;
+                        url1=await s.ref.getDownloadURL();
+                        print("url is "+url1);
+                      },
+                      child: new Text("Upload"),
+                    ),
                   ),
                 ],
               ),
@@ -554,7 +575,9 @@ class _SellerRegisterState extends State<SellerRegister> {
                       onPressed: () => _openFileExplorer1(),
                       child: new Text("Choose File"),
                     ),
+
                   ),
+
                   new Builder(
                     builder: (BuildContext context) => _path1 != null || _paths1 != null
                         ? new Container(
@@ -565,19 +588,34 @@ class _SellerRegisterState extends State<SellerRegister> {
                         itemBuilder: (BuildContext context, int index) {
                           final bool isMultiPath = _paths1 != null && _paths1.isNotEmpty;
                           final String name = 'File: ' + (isMultiPath ? _paths1.keys.toList()[index] : _fileName1 ?? '...');
-                          final path = isMultiPath ? _paths1.values.toList()[index].toString() : _path1;
+                           path = isMultiPath ? _paths1.values.toList()[index].toString() : _path1;
+                           file=new File(path);
 
                           return new ListTile(
                             title: new Text(
                               name,
                             ),
-                            subtitle: new Text(path),
+                            subtitle: new Text("hello"+path),
                           );
                         },
                         separatorBuilder: (BuildContext context, int index) => new Divider(),
                       ),
                     )
                         : new Container(),
+                  ),
+                  new Padding(
+
+                    padding: const EdgeInsets.only(top: 10.0, bottom: 20.0),
+                    child: new RaisedButton(
+                      onPressed: () async{
+                        final StorageReference firebaseStorageRef=FirebaseStorage.instance.ref().child('Shop_Photo');
+                        final StorageUploadTask task=firebaseStorageRef.putFile(file);
+                        StorageTaskSnapshot s=await task.onComplete;
+                        url=await s.ref.getDownloadURL();
+                        print("url is "+url);
+                      },
+                      child: new Text("Upload"),
+                    ),
                   ),
                 ],
               ),
@@ -607,7 +645,10 @@ class _SellerRegisterState extends State<SellerRegister> {
               'City':_city,
               'State':_state,
               'Zip':_zip,
-              'More_than_one shops?':_radio
+              'More_than_one shops?':_radio,
+              'GST_Certificate':url,
+              'Shop_Image':url1
+
 
 
 

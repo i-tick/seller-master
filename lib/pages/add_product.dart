@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +16,10 @@ class AddProduct extends StatefulWidget {
 FirebaseUser user;
 class _AddProductState extends State<AddProduct> {
   String _name,_description,_quantity,_price,_radio;
+  File file2;
+  String path;
+   StorageReference firebaseStorageRef;
+   String url;
 
   String _email;
   String _password;
@@ -190,7 +197,7 @@ class _AddProductState extends State<AddProduct> {
           new Flexible(child: new Column(
             children: <Widget>[
               new Padding(padding: EdgeInsets.fromLTRB(10.0,0.0,0.0,0.0)),
-              new Text('Ekanta Pattnaik\nShop Name',style: TextStyle(fontSize: 22.0),)
+              //new Text('Ekanta Pattnaik\nShop Name',style: TextStyle(fontSize: 22.0),)
 
             ],
           ))
@@ -408,7 +415,8 @@ class _AddProductState extends State<AddProduct> {
                         itemBuilder: (BuildContext context, int index) {
                           final bool isMultiPath = _paths1 != null && _paths1.isNotEmpty;
                           final String name = 'File: ' + (isMultiPath ? _paths1.keys.toList()[index] : _fileName1 ?? '...');
-                          final path = isMultiPath ? _paths1.values.toList()[index].toString() : _path1;
+                           path = isMultiPath ? _paths1.values.toList()[index].toString() : _path1;
+                          file2=new File(path);
 
                           return new ListTile(
                             title: new Text(
@@ -421,6 +429,20 @@ class _AddProductState extends State<AddProduct> {
                       ),
                     )
                         : new Container(),
+                  ),
+                  new Padding(
+                    padding: const EdgeInsets.only(top: 10.0, bottom: 20.0),
+                    child: new RaisedButton(
+                      onPressed: () async{
+                         firebaseStorageRef=FirebaseStorage.instance.ref().child(_radio+"a");
+                        final StorageUploadTask task=firebaseStorageRef.putFile(file2);
+                        StorageTaskSnapshot s=await task.onComplete;
+                        url=await s.ref.getDownloadURL();
+                        print("url is "+url);
+
+                      },
+                      child: new Text("Upload"),
+                    ),
                   ),
                 ],
               ),
@@ -440,7 +462,7 @@ class _AddProductState extends State<AddProduct> {
               FirebaseDatabase.instance.reference().child('Products').child(_radio).push().set(
 {
   'description':_description,
-  'imgurl':' ',
+  'imgurl':url,
   'name':_name,
   'price':_price,
   'quantity':_quantity,
