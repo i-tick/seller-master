@@ -594,7 +594,7 @@ class _SellerRegisterState extends State<SellerRegister> {
           child: new Text('Submit For Verification', textAlign: TextAlign.center,style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red),),
           onPressed:
           (){
-            Firestore.instance.collection('sellers').document(user.uid).setData({
+            Firestore.instance.collection('Application for sellers').document(user.uid).setData({
               'Email_id':_emailid,
               'Shop_Name':_shopname,
               'Owner_Nmae':_ownername,
