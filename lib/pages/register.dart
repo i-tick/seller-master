@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
+import 'package:progress_dialog/progress_dialog.dart';
 import 'package:flutter/services.dart';
 import 'package:file_picker/file_picker.dart';
 
@@ -16,6 +16,7 @@ class SellerRegister extends StatefulWidget {
 FirebaseUser user;
 FirebaseAuth _auth=FirebaseAuth.instance;
 class _SellerRegisterState extends State<SellerRegister> {
+  ProgressDialog pr;
   bool _isSeller=true;
   String path;
   String url,url1;
@@ -385,11 +386,13 @@ class _SellerRegisterState extends State<SellerRegister> {
                     padding: const EdgeInsets.only(top: 10.0, bottom: 20.0),
                     child: new RaisedButton(
                       onPressed: () async{
+                        pr.show();
                         final StorageReference firebaseStorageRef=FirebaseStorage.instance.ref().child('GST_certificate');
                         final StorageUploadTask task=firebaseStorageRef.putFile(file1);
                         StorageTaskSnapshot s=await task.onComplete;
                         url1=await s.ref.getDownloadURL();
                         print("url is "+url1);
+                        pr.hide();
                       },
                       child: new Text("Upload"),
                     ),
@@ -608,11 +611,13 @@ class _SellerRegisterState extends State<SellerRegister> {
                     padding: const EdgeInsets.only(top: 10.0, bottom: 20.0),
                     child: new RaisedButton(
                       onPressed: () async{
+                        pr.show();
                         final StorageReference firebaseStorageRef=FirebaseStorage.instance.ref().child('Shop_Photo');
                         final StorageUploadTask task=firebaseStorageRef.putFile(file);
                         StorageTaskSnapshot s=await task.onComplete;
                         url=await s.ref.getDownloadURL();
                         print("url is "+url);
+                        pr.hide();
                       },
                       child: new Text("Upload"),
                     ),

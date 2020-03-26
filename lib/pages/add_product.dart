@@ -276,7 +276,7 @@ class _AddProductState extends State<AddProduct> {
             print(val);
             setselectedRadio(val);
           },),
-          new Text('TV & Appliances')
+          new Text('Groceries')
         ],
       ),
 
@@ -286,7 +286,7 @@ class _AddProductState extends State<AddProduct> {
             print(val);
             setselectedRadio(val);
           },),
-          new Text('Men')
+          new Text('Fashion')
         ],
       ),
       Row(
@@ -295,39 +295,12 @@ class _AddProductState extends State<AddProduct> {
             print(val);
             setselectedRadio(val);
           },),
-          new Text('Women')
-        ],
-      ),
-      Row(
-        children: <Widget>[
-          new Radio(value: 5, groupValue: selectradio, activeColor: Colors.green,onChanged: (val){
-            print(val);
-            setselectedRadio(val);
-          },),
-          new Text('Kids')
-        ],
-      ),
-      Row(
-        children: <Widget>[
-          new Radio(value: 6, groupValue: selectradio, activeColor: Colors.green,onChanged: (val){
-            print(val);
-            setselectedRadio(val);
-          },),
-          new Text('Home and Furniture')
-        ],
-      ),
-      Row(
-        children: <Widget>[
-          new Radio(value: 7, groupValue: selectradio, activeColor: Colors.green,onChanged: (val){
-            print(val);
-            setselectedRadio(val);
-          },),
           new Text('Sports')
         ],
       ),
       Row(
         children: <Widget>[
-          new Radio(value: 8, groupValue: selectradio, activeColor: Colors.green,onChanged: (val){
+          new Radio(value: 5, groupValue: selectradio, activeColor: Colors.green,onChanged: (val){
             print(val);
             setselectedRadio(val);
           },),

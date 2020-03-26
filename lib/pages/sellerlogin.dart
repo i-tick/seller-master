@@ -43,7 +43,7 @@ class _SellerLoginState extends State<SellerLogin> {
                               width: 200,
                               child: new FlatButton(onPressed: () {
                                 //Navigator.push(context, MaterialPageRoute(builder: (context)=>new Lo()));
-                              }, child: Text("hi", style: new TextStyle(
+                              }, child: Text("DuckHawk Seller", style: new TextStyle(
                                   fontSize: 15.0, color: Colors.white),))),)
                         //child: new FlatButton(onPre,new Text("${widget.add}",style: new TextStyle(fontSize: 15.0),)))),
 
@@ -60,106 +60,106 @@ class _SellerLoginState extends State<SellerLogin> {
 
         ),
 
-        endDrawer: new Drawer(
-          child: new ListView(
-            children: <Widget>[
-              InkWell(
-                child: new UserAccountsDrawerHeader(
-
-
-                  accountName: Text("hi"),
-                  accountEmail: null,
-                  currentAccountPicture: GestureDetector(
-                      child: new CircleAvatar(
-                        //backgroundImage: ImageProvider("images/men-jeans@2x.png"),
-                        backgroundColor: Colors.grey,
-                      )),
-                  decoration: new BoxDecoration(color: Color(0xff104670)),
-                ),
-                onTap: () {
-                  //Navigator.push(context, MaterialPageRoute(builder: (context)=>new LoginPage()));
-                },
-              ),
-
-              InkWell(
-                onTap: () {},
-                child: ListTile(
-                  title: Text('Men'),
-                ),
-              ),
-              InkWell(
-                onTap: () {},
-                child: ListTile(title: Text('Women')),
-              ),
-              InkWell(
-                onTap: () {},
-                child: ListTile(title: Text('Electronics')),
-              ),
-              InkWell(
-                onTap: () {},
-                child: ListTile(title: Text('Sports')),
-              ),
-              InkWell(
-                onTap: () {},
-                child: ListTile(title: Text('Books')),
-              ),
-              InkWell(
-                onTap: () {},
-                child: ListTile(title: Text('Home & Furniture')),
-              ),
-              InkWell(
-                onTap: () {},
-                child: ListTile(title: Text('Beauty & Personal Care')),
-              ),
-              Divider(),
-              Container(
-                  color: Color(0xffaaaaaa),
-                  child: new Column(
-                    children: <Widget>[
-                      InkWell(
-                        onTap: () {},
-                        child: ListTile(title: Text('My Orders')),
-                      ),
-                      InkWell(
-                        onTap: () {},
-                        child: ListTile(title: Text('My Cart')),
-                      ),
-                      InkWell(
-                        onTap: () {},
-                        child: ListTile(title: Text('Account')),
-                      ),
-                      InkWell(
-                        onTap: () {},
-                        child: ListTile(title: Text('Notifications')),
-                      ),
-                      InkWell(
-                        onTap: () {},
-                        child: ListTile(title: Text('Budget')),
-                      ),
-                      InkWell(
-                        onTap: () {},
-                        child: ListTile(title: Text('Share')),
-                      ),
-                      InkWell(
-                        onTap: () {},
-                        child: ListTile(title: Text('Settings')),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          //_signOut();
-                          //name="hi";
-                        },
-                        child: ListTile(title: Text('LOGOUT')),
-                      ),
-                      InkWell(
-                        onTap: () {},
-                        child: ListTile(title: Text('HELP')),
-                      )
-                    ],
-                  )),
-            ],
-          ),
-        ),
+//        endDrawer: new Drawer(
+//          child: new ListView(
+//            children: <Widget>[
+//              InkWell(
+//                child: new UserAccountsDrawerHeader(
+//
+//
+//                  accountName: Text("hi"),
+//                  accountEmail: null,
+//                  currentAccountPicture: GestureDetector(
+//                      child: new CircleAvatar(
+//                        //backgroundImage: ImageProvider("images/men-jeans@2x.png"),
+//                        backgroundColor: Colors.grey,
+//                      )),
+//                  decoration: new BoxDecoration(color: Color(0xff104670)),
+//                ),
+//                onTap: () {
+//                  //Navigator.push(context, MaterialPageRoute(builder: (context)=>new LoginPage()));
+//                },
+//              ),
+//
+//              InkWell(
+//                onTap: () {},
+//                child: ListTile(
+//                  title: Text('Men'),
+//                ),
+//              ),
+//              InkWell(
+//                onTap: () {},
+//                child: ListTile(title: Text('Women')),
+//              ),
+//              InkWell(
+//                onTap: () {},
+//                child: ListTile(title: Text('Electronics')),
+//              ),
+//              InkWell(
+//                onTap: () {},
+//                child: ListTile(title: Text('Sports')),
+//              ),
+//              InkWell(
+//                onTap: () {},
+//                child: ListTile(title: Text('Books')),
+//              ),
+//              InkWell(
+//                onTap: () {},
+//                child: ListTile(title: Text('Home & Furniture')),
+//              ),
+//              InkWell(
+//                onTap: () {},
+//                child: ListTile(title: Text('Beauty & Personal Care')),
+//              ),
+//              Divider(),
+//              Container(
+//                  color: Color(0xffaaaaaa),
+//                  child: new Column(
+//                    children: <Widget>[
+//                      InkWell(
+//                        onTap: () {},
+//                        child: ListTile(title: Text('My Orders')),
+//                      ),
+//                      InkWell(
+//                        onTap: () {},
+//                        child: ListTile(title: Text('My Cart')),
+//                      ),
+//                      InkWell(
+//                        onTap: () {},
+//                        child: ListTile(title: Text('Account')),
+//                      ),
+//                      InkWell(
+//                        onTap: () {},
+//                        child: ListTile(title: Text('Notifications')),
+//                      ),
+//                      InkWell(
+//                        onTap: () {},
+//                        child: ListTile(title: Text('Budget')),
+//                      ),
+//                      InkWell(
+//                        onTap: () {},
+//                        child: ListTile(title: Text('Share')),
+//                      ),
+//                      InkWell(
+//                        onTap: () {},
+//                        child: ListTile(title: Text('Settings')),
+//                      ),
+//                      InkWell(
+//                        onTap: () {
+//                          //_signOut();
+//                          //name="hi";
+//                        },
+//                        child: ListTile(title: Text('LOGOUT')),
+//                      ),
+//                      InkWell(
+//                        onTap: () {},
+//                        child: ListTile(title: Text('HELP')),
+//                      )
+//                    ],
+//                  )),
+//            ],
+//          ),
+//        ),
         body: new ListView(
 
           children: <Widget>[
