@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:seller/pages/location.dart';
 import 'package:seller/pages/register.dart';
 import 'package:seller/pages/sellerlogin.dart';
 import './pages/login_page.dart';
@@ -18,7 +19,8 @@ void main() {
 
       home: HomePage(null)));
 }
-
+String badd="Loading";
+String curlat,curlon;
 class HomePage extends StatefulWidget {
 
   final add;
@@ -92,17 +94,16 @@ class _HomePageState extends State<HomePage> {
                       new IconButton(
                         icon: new Icon(Icons.place),
                         onPressed: () {
-                          //Navigator.push(context, MaterialPageRoute(builder: (context)=>new MyLocation()));
-                          //_getCurrentLocation();
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>new MyLocation()));
+                          _getCurrentLocation();
                           currentUser();
                         },
                       ),
                        SingleChildScrollView(
                            child: Container(
-                               width: 200,
                               child: new FlatButton(onPressed: (){
-                              //  Navigator.push(context, MaterialPageRoute(builder: (context)=>new MyLocation()));
-                              }, child: Text("${widget.add}",style: new TextStyle(fontSize: 15.0, color: Colors.white),))),)
+                                Navigator.push(context, MaterialPageRoute(builder: (context)=>new MyLocation()));
+                              }, child: Text(widget.add==null?badd:"${widget.add}",style: new TextStyle(fontSize: 15.0, color: Colors.white),))),)
                              //child: new FlatButton(onPre,new Text("${widget.add}",style: new TextStyle(fontSize: 15.0),)))),
 
 
@@ -282,6 +283,8 @@ class _HomePageState extends State<HomePage> {
     try {
       List<Placemark> p = await geolocator.placemarkFromCoordinates(
           _currentPosition.latitude, _currentPosition.longitude);
+      curlat=_currentPosition.latitude.toString();
+      curlon=_currentPosition.longitude.toString();
 
       Placemark place = p[0];
 
@@ -289,6 +292,7 @@ class _HomePageState extends State<HomePage> {
         _currentAddress = "${place.locality}";
         print(place.locality);
       });
+      badd=_currentAddress;
     } catch (e) {
       print(e);
     }

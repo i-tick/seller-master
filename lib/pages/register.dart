@@ -633,7 +633,8 @@ class _SellerRegisterState extends State<SellerRegister> {
           onPressed:
           (){
             Firestore.instance.collection('Application for sellers').document(user.uid).setData({
-              'Email_id':_emailid,
+              'GST_Certificate':url,
+              'Email_id':user.email,
               'Shop_Name':_shopname,
               'Owner_Nmae':_ownername,
               'Phone':_phone,
@@ -646,7 +647,6 @@ class _SellerRegisterState extends State<SellerRegister> {
               'State':_state,
               'Zip':_zip,
               'More_than_one shops?':_radio,
-              'GST_Certificate':url,
               'Shop_Image':url1
 
 

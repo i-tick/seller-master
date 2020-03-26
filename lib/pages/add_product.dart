@@ -5,6 +5,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:progress_dialog/progress_dialog.dart';
 
 import 'package:flutter/services.dart';
 import 'package:file_picker/file_picker.dart';
@@ -13,8 +14,11 @@ class AddProduct extends StatefulWidget {
   @override
   _AddProductState createState() => _AddProductState();
 }
+
 FirebaseUser user;
 class _AddProductState extends State<AddProduct> {
+  ProgressDialog pr;
+  double percentage = 0.0;
   String _name,_description,_quantity,_price,_radio;
   File file2;
   String path;
@@ -136,6 +140,9 @@ class _AddProductState extends State<AddProduct> {
 
   @override
   Widget build(BuildContext context) {
+    pr = new ProgressDialog(context, showLogs: true);
+    pr.style(message: 'Please wait...');
+
     return Scaffold(
         appBar: new AppBar(
           backgroundColor: Color(0xff104670),
@@ -434,11 +441,15 @@ class _AddProductState extends State<AddProduct> {
                     padding: const EdgeInsets.only(top: 10.0, bottom: 20.0),
                     child: new RaisedButton(
                       onPressed: () async{
+                        pr.show();
                          firebaseStorageRef=FirebaseStorage.instance.ref().child(_radio+"a");
                         final StorageUploadTask task=firebaseStorageRef.putFile(file2);
                         StorageTaskSnapshot s=await task.onComplete;
                         url=await s.ref.getDownloadURL();
+
                         print("url is "+url);
+                        pr.hide();
+
 
                       },
                       child: new Text("Upload"),

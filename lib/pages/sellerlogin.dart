@@ -242,23 +242,6 @@ class _SellerLoginState extends State<SellerLogin> {
           child: new Text('Login', textAlign: TextAlign.center,
             style: TextStyle(
                 color: Colors.yellow, fontWeight: FontWeight.bold),),
-          onPressed: () {
-           /* FirebaseAuth.instance.signInWithEmailAndPassword(
-                email: _email, password: _password).then((user) {
-              /* Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => AddProduct()),
-              );*/
-            }).catchError((e) {});*/
-            //Navigator.push(context, MaterialPageRoute(builder: (context)=>new AddProduct()));
-          },
-          shape: new RoundedRectangleBorder(
-              borderRadius: new BorderRadius.circular(30.0)),
-        ),
-        new OutlineButton(
-          child: new Text('Add Products', textAlign: TextAlign.center,
-            style: TextStyle(
-                color: Colors.yellow, fontWeight: FontWeight.bold),),
           onPressed:() {
             FirebaseAuth.instance.signInWithEmailAndPassword(
                 email: _email, password: _password);
